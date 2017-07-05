@@ -138,6 +138,34 @@
       ]
     },
     {
+      "name": "lab.hosts-config",
+      "apiVersion": "2015-01-01",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "incremental",
+        "templateLink": {
+          "uri": "https://gallery.azure.com/artifact/20161101/microsoft.custom-script-linux-arm.2.0.50/Artifacts/MainTemplate.json"
+        },
+        "parameters": {
+          "vmName": {
+            "value": "ca-lab-vm"
+          },
+          "location": {
+            "value": "westus2"
+          },
+          "fileUris": {
+            "value": []
+          },
+          "commandToExecute": {
+            "value": "echo \"ca-labs.com 10.0.0.5\" > /etc/hosts"
+          }
+        }
+      },
+      "dependsOn": [
+        "microsoft.docker-20170705115036"
+      ]
+    },
+    {
       "name": "[replace(concat(parameters('storageAccountName'), resourceGroup().name),'-', '')]",
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2015-06-15",
@@ -185,7 +213,8 @@
               "subnet": {
                 "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName')), '/subnets/', parameters('subnetName'))]"
               },
-              "privateIPAllocationMethod": "Dynamic",
+              "privateIPAllocationMethod": "Static",
+              "privateIPAddress": "10.0.0.4",
               "publicIpAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
               }
