@@ -11,6 +11,7 @@ angular.module('accumulatorApp', [])
         .then(function success(response) {
           $scope.accumulator.unshift(response.data);
           $scope.item = '';
+          $scope.enabled = true;
         });
     }
 
