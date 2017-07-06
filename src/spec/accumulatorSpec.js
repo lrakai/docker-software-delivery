@@ -14,7 +14,7 @@ describe('accumulator', function () {
 		$httpBackend.verifyNoOutstandingRequest();
 	});
 
-	describe('add', function () {
+	describe('Messages', function () {
 		it('add increases length by one', function () {
 			var $scope = {};
 			var controller = $controller('AccumulatorController', { $scope: $scope });

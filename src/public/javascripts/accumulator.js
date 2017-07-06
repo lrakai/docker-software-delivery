@@ -7,7 +7,7 @@ angular.module('accumulatorApp', [])
 
     $scope.add = function () {
       $scope.enabled = false;
-      $http.post('/api', {"message": $scope.item})
+      $http.post('/api', { "message": $scope.item })
         .then(function success(response) {
           $scope.accumulator.unshift(response.data);
           $scope.item = '';
@@ -15,10 +15,12 @@ angular.module('accumulatorApp', [])
         });
     }
 
-    $http.get('/api')
-      .then(function success(response) {
-        $scope.accumulator = response.data;
-        $scope.enabled = true;
-      });
+    $scope.init = function () {
+      $http.get('/api')
+        .then(function success(response) {
+          $scope.accumulator = response.data;
+          $scope.enabled = true;
+        });
+    }
 
   }]);

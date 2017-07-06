@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .container(ng-app="accumulatorApp")
+  .container(ng-app="accumulatorApp", data-ng-init="init()")
     h1= title
     div#env-notice= environmentNotice
     div#server-notice= localAddress
