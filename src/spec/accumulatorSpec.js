@@ -18,14 +18,13 @@ describe('accumulator', function () {
 		it('add increases length by one', function () {
 			var $scope = {};
 			var controller = $controller('AccumulatorController', { $scope: $scope });
-			$httpBackend.flush();
 			$httpBackend.expectPOST('/api').respond(201, '{}');
 
 			$scope.item = "newItem";
 			$scope.add();
+			$httpBackend.flush();
 
 			expect($scope.accumulator.length).toBe(1);
-			$httpBackend.flush();
 		});
 	});
 
