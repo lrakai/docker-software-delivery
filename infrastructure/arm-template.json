@@ -104,7 +104,7 @@
       }
     },
     {
-      "name": "microsoft.docker-20170705013838",
+      "name": "microsoft.docker-lab-vm",
       "apiVersion": "2015-01-01",
       "type": "Microsoft.Resources/deployments",
       "properties": {
@@ -114,10 +114,10 @@
         },
         "parameters": {
           "vmName": {
-            "value": "ca-lab-vm"
+            "value": "[parameters('virtualMachineName')]"
           },
           "location": {
-            "value": "westus2"
+            "value":  "[resourceGroup().location]"
           },
           "dockerPort": {
             "value": "2376"
@@ -151,13 +151,13 @@
             "value": "ca-lab-vm"
           },
           "location": {
-            "value": "westus2"
+            "value": "[resourceGroup().location]"
           },
           "fileUris": {
             "value": []
           },
           "commandToExecute": {
-            "value": "echo \"ca-labs.com 10.0.0.5\" > /etc/hosts"
+            "value": "echo -en \"registry.ca-labs.com 10.0.0.5\nproduction.ca-labs.com 10.0.0.6\n\" > /etc/hosts"
           }
         }
       },
