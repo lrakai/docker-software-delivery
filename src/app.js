@@ -21,7 +21,7 @@ var app = express();
 
 MongoClient.connect(url, function (err, mongoDb) {
   assert.equal(null, err);
-  console.log("Connected correctly to server");
+  console.log("Connected to database");
 
   db = mongoDb;
 });
