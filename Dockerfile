@@ -1,8 +1,12 @@
+# Node.js version 6 base image
 FROM node:6
-EXPOSE 3000
+# Production app runs on port 8080
 EXPOSE 8080
+# Copy source files into container
 COPY ./src /app
+# Set working directory to where source is
 WORKDIR /app
-
+# Install production dependencies and build app
 RUN npm install --production && npm run build
-CMD ["NODE_ENV=production", "npm", "start"]
+# Start the server in production mode and use app-db as db host
+CMD ["NODE_ENV=production", "DB_HOST=app-db", "npm", "start"]
