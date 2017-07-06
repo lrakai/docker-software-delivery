@@ -14,4 +14,4 @@ block content
         input.btn-primary(type="submit", value="Add", ng-disabled="!item.length || !enabled")
       ul
         li(ng-repeat="item in accumulator track by $index")
-          | {{item}}
+          | {{item.message}}

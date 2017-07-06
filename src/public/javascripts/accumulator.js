@@ -7,7 +7,7 @@ angular.module('accumulatorApp', [])
 
     $scope.add = function () {
       $scope.enabled = false;
-      $http.post('/api')
+      $http.post('/api', {"message": $scope.item})
         .then(function success(response) {
           $scope.accumulator.unshift(response.data);
           $scope.item = '';
