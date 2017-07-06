@@ -2,6 +2,8 @@
 FROM node:6
 # Production app runs on port 8080
 EXPOSE 8080
+# Set production mode and use app-db as the database host
+ENV NODE_ENV=production DB_HOST=app-db 
 # Copy source files into container
 COPY ./src /app
 # Set working directory to where source is
@@ -9,4 +11,4 @@ WORKDIR /app
 # Install production dependencies and build app
 RUN npm install --production && npm run build
 # Start the server in production mode and use app-db as db host
-CMD ["NODE_ENV=production", "DB_HOST=app-db", "npm", "start"]
+CMD ["npm", "start"]
