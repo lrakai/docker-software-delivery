@@ -44,6 +44,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 
+var insertDocument = function (db, document, callback) {
+  var collection = db.collection('documents');
+  collection.insertOne(document, function (err, result) {
+    callback(err, JSON.stringify(result.ops[0]));
+  });
+};
+
+var findAllDocuments = function (db, callback) {
+  var collection = db.collection('documents');
+  collection.find({}).toArray(function (err, result) {
+    callback(err, result);
+  });
+}
+
 // Insert message
 app.post('/api', function (req, res) {
   var data = req.body;
@@ -54,8 +68,9 @@ app.post('/api', function (req, res) {
 
 // Get messages
 app.get('/api', function (req, res) {
-  
-  res.send('world');
+  findAllDocuments(db, function (err, result) {
+    res.send(result);
+  });
 });
 
 // catch 404 and forward to error handler
