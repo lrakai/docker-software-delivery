@@ -54,7 +54,7 @@ var insertDocument = function (db, document, callback) {
 var findAllDocuments = function (db, callback) {
   var collection = db.collection('documents');
   collection.find({}).toArray(function (err, result) {
-    callback(err, result);
+    callback(err, result.reverse());
   });
 }
 
