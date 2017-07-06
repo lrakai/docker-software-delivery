@@ -10,8 +10,8 @@ block content
     div(ng-controller="AccumulatorController")
       form(ng-submit="add()")
         input(type="text", placeholder="Enter a message", ng-model="item")
-        // disable button if item is empty
-        input.btn-primary(type="submit", value="Add", ng-disabled="!item.length")
+        // disable button if item is empty or controller is not enabled
+        input.btn-primary(type="submit", value="Add", ng-disabled="!item.length || !enabled")
       ul
         li(ng-repeat="item in accumulator track by $index")
           | {{item}}

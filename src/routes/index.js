@@ -21,12 +21,12 @@ Object.keys(ifaces).forEach(function (ifname) {
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'Accumulator', 
+router.get('/', function (req, res, next) {
+  res.render('index', {
+    title: 'Accumulator',
     environment: environment,
     environmentNotice: environmentNotice,
-    localAddress: localAddress 
+    localAddress: localAddress
   });
 });
 
