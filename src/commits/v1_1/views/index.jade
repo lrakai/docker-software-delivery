@@ -16,7 +16,7 @@ block content
         li(ng-repeat="item in accumulator track by $index")
           span(class="emphasize" ng-show="item.emphasis")
             | {{item.message}}
-          span(ng-show="item.emphasis")
+          span(ng-show="!item.emphasis")
             | {{item.message}}
-          img(src="images/toggle-on.png" class="toggle" ng-show="item.emphasis" ng-click="toggleEmphasis(item)") 
+          img(src="images/toggle-on.png" class="toggle" ng-show="item.emphasis" ng-click="toggleEmphasis(item)")
           img(src="images/toggle-off.png" class="toggle" ng-show="!item.emphasis" ng-click="toggleEmphasis(item)")
