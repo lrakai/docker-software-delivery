@@ -5,6 +5,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var MongoClient = require('mongodb').MongoClient
+  , ObjectId = require('mongodb').ObjectId
   , assert = require('assert');
 
 var host = process.env.DB_HOST ? process.env.DB_HOST : 'localhost';
@@ -53,6 +54,7 @@ var insertDocument = function (db, document, callback) {
 };
 
 var updateDocument = function (db, document, callback) {
+  document._id = ObjectId(document._id);
   var collection = db.collection('documents');
   collection.replaceOne({"_id": document._id}, document, function (err, result) {
     callback(err, JSON.stringify(result.ops[0]));
