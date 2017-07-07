@@ -1,5 +1,5 @@
-# Docker Compose version 3
-version: "3"
+# Docker Compose version 2
+version: "2"
 services:
   # appliction tier container
   app:
@@ -7,6 +7,9 @@ services:
     image: registry.ca-labs.com:5000/accumulator:1
     ports:
       - "80:8080"
+    # Ensure the app container starts after db is ready
+    depends_on:
+      - app-db
   # database tier container
   app-db:
     image: mongo:3
