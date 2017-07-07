@@ -1,0 +1,9 @@
+version: "2"
+services:
+  app:
+    restart: always
+  app-db:
+    restart: always
+    volumes:
+      # mount volume for database files
+      - /opt/data:/data/db
