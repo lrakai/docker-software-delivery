@@ -1,36 +1,34 @@
-angular.module('accumulatorApp', ['ngCookies'])
-    .controller('AccumulatorController', ['$scope', '$cookies', function ($scope, $cookies) {
+angular.module('accumulatorApp', [])
+  .controller('AccumulatorController', ['$scope', '$http', function ($scope, $http) {
 
-        function upgrade() {
-            var accumulator = [];
-            var lengthDifference = $scope.accumulator.length - $scope.emphasis.length;
-            if (lengthDifference === 0) {
-                return;
-            }
+    $scope.accumulator = [];
+    $scope.item = '';
+    $scope.enabled = false;
 
-            for(var i = 0; i < lengthDifference; i++) {
-                $scope.emphasis.unshift(false);
-            }
+    $scope.add = function () {
+      $scope.enabled = false;
+      $http.post('/api', { "message": $scope.item })
+        .then(function success(response) {
+          $scope.accumulator.unshift(response.data);
+          $scope.item = '';
+          $scope.enabled = true;
+        });
+    }
 
-            $cookies.putObject('emphasis', $scope.emphasis);
-        }
+    $scope.init = function () {
+      $http.get('/api')
+        .then(function success(response) {
+          $scope.accumulator = response.data;
+          $scope.enabled = true;
+        });
+    }
 
-        $scope.accumulator = $cookies.getObject('accumulator') || [];
-        $scope.emphasis = $cookies.getObject('emphasis') || [];
-        upgrade();
-        $scope.item = '';
+    $scope.toggleEmphasis = function (item) {
+      if(item.emphasis === undefined) {
+          item.emphasis = false;
+      }
+      item.emphasis = !item.emphasis;
+      $http.put('/api', item);
+    }
 
-        $scope.add = function () {
-            $scope.accumulator.unshift($scope.item);
-            $scope.emphasis.unshift(false);
-            $cookies.putObject('accumulator', $scope.accumulator);
-            $cookies.putObject('emphasis', $scope.accumulator);
-            $scope.item = '';
-        }
-
-        $scope.toggleEmphasis = function (index) {
-            $scope.emphasis[index] = !$scope.emphasis[index];
-            $cookies.putObject('emphasis', $scope.emphasis);
-        }
-
-    }]);
+  }]);
