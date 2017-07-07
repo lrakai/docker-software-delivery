@@ -7,7 +7,7 @@ services:
     image: registry.ca-labs.com:5000/accumulator:1
     ports:
       - "80:8080"
-    # Ensure the app container starts after db is ready
+    # Ensure the app container starts after app-db
     depends_on:
       - app-db
   # database tier container
