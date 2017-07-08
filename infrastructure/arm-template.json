@@ -267,7 +267,7 @@
             "value": []
           },
           "commandToExecute": {
-            "value": "bash \"echo registry.ca-labs.com 10.0.0.5 >> /etc/hosts && echo production.ca-labs.com 10.0.0.6 >> /etc/hosts && wget -O /tmp/server-cert.pem https://raw.githubusercontent.com/cloudacademy/docker-software-delivery/master/.certs/server-cert.pem &&  mkdir -p /etc/docker/certs.d/registry.ca-labs.com:5000/ && cp /tmp/server-cert.pem /etc/docker/certs.d/registry.ca-labs.com:5000/ca.crt\""
+            "value": "bash -c \"echo registry.ca-labs.com 10.0.0.5 >> /etc/hosts && echo production.ca-labs.com 10.0.0.6 >> /etc/hosts && wget -O /tmp/server-cert.pem https://raw.githubusercontent.com/cloudacademy/docker-software-delivery/master/.certs/server-cert.pem &&  mkdir -p /etc/docker/certs.d/registry.ca-labs.com:5000/ && cp /tmp/server-cert.pem /etc/docker/certs.d/registry.ca-labs.com:5000/ca.crt\""
           }
         }
       },
@@ -329,7 +329,7 @@
             "value": []
           },
           "commandToExecute": {
-            "value": "bash \"echo registry.ca-labs.com 10.0.0.5 >> /etc/hosts && echo production.ca-labs.com 10.0.0.6 >> /etc/hosts\""
+            "value": "bash -c \"echo registry.ca-labs.com 10.0.0.5 >> /etc/hosts && echo production.ca-labs.com 10.0.0.6 >> /etc/hosts\""
           }
         }
       },
@@ -391,7 +391,7 @@
             "value": []
           },
           "commandToExecute": {
-            "value": "bash \"echo registry.ca-labs.com 10.0.0.5 >> /etc/hosts && echo production.ca-labs.com 10.0.0.6 >> /etc/hosts && mkdir -p /etc/docker/certs.d/registry.ca-labs.com:5000/ && cp /etc/docker/cert.pem /etc/docker/certs.d/registry.ca-labs.com:5000/ca.crt\""
+            "value": "bash -c \"echo registry.ca-labs.com 10.0.0.5 >> /etc/hosts && echo production.ca-labs.com 10.0.0.6 >> /etc/hosts && mkdir -p /etc/docker/certs.d/registry.ca-labs.com:5000/ && cp /etc/docker/cert.pem /etc/docker/certs.d/registry.ca-labs.com:5000/ca.crt\""
           }
         }
       },
