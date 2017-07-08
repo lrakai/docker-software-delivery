@@ -128,7 +128,7 @@
       }
     },
     {
-      "name": "parameters('registryMachineName')]",
+      "name": "[parameters('registryMachineName')]",
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2016-04-30-preview",
       "location": "[resourceGroup().location]",
