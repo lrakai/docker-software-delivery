@@ -2,7 +2,7 @@
 Demonstration of developing, testing, and delivering production software with Docker.
 
 ## Overview
-The MEAN stack application code is used to demonstrate how to:
+The MEAN stack application code in `src/` is used to demonstrate how to:
 - Containerize a multi-tier application
 - Create development and test environments with Docker Compose
 - Create production environments using Docker Compose override files
