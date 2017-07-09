@@ -1,7 +1,7 @@
 # Docker Compose version 2
 version: "2"
 services:
-  # appliction tier container
+  # application tier container
   app:
     # Use the version 1 image in the private registry
     image: registry.ca-labs.com:5000/accumulator:1
