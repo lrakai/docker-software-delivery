@@ -28,3 +28,60 @@ When finished, the following can tear down the environment:
 ```ps1
 Remove-AzureRmResourceGroup -Name docker
 ```
+
+## Useful Commands
+### Registry VM
+To create a registry on the registry vm enter:
+```sh
+docker run -d --name registry \
+           --restart=always \
+           -v /etc/docker/:/certs \
+           -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/cert.pem \
+           -e REGISTRY_HTTP_TLS_KEY=/certs/key.pem \
+           -p 5000:5000 \
+           registry:2
+```
+The registry is accessible from with the virtual network at registry.ca-labs.com:5000
+
+### Development VM
+After cloning the source code, unit test the code
+```sh
+npm install
+npm test
+```
+
+Build the image:
+```sh
+docker build -t registry.ca-labs.com:5000/accumulator:1 .
+```
+
+Push the image to the registry:
+```sh
+docker push registry.ca-labs.com:5000/accumulator:1
+```
+
+Integration test the applicaiton using Docker Compose:
+```sh
+docker-compose up -d
+bash integration.sh
+docker-compose down
+```
+
+Simplify communication with the production VM by moving certificates to the user's default .docker directory:
+```sh
+mkdir ~/.docker
+sudo cp /etc/docker/ca.pem \
+        /etc/docker/cert.pem \
+        /etc/docker/key.pem \
+        ~/.docker
+sudo chown student ~/.docker/*
+```
+
+Start the application on the production VM using Docker Compose the production override file:
+```sh
+DOCKER_HOST=production.ca-labs.com:2376 DOCKER_TLS_VERIFY=true docker-compose \
+    -f docker-compose.yml \
+    -f docker-compose.prod.yml \
+    up \
+    -d
+```
