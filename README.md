@@ -54,12 +54,13 @@ npm test
 
 Build the image:
 ```sh
-docker build -t registry.ca-labs.com:5000/accumulator:1 .
+docker build -t registry.ca-labs.com:5000/accumulator:1 registry.ca-labs.com:5000/accumulator:1.0 .
 ```
 
 Push the image to the registry:
 ```sh
 docker push registry.ca-labs.com:5000/accumulator:1
+docker push registry.ca-labs.com:5000/accumulator:1.0
 ```
 
 Integration test the applicaiton using Docker Compose:
@@ -86,4 +87,36 @@ DOCKER_HOST=production.ca-labs.com:2376 DOCKER_TLS_VERIFY=true docker-compose \
     -f docker-compose.prod.yml \
     up \
     -d
+```
+
+Update the application with v1.1 of the source code which includes a new feature:
+```sh
+cp -R src/commits/v1_1/. src
+```
+
+Build the v1.1 container image:
+```sh
+docker build -t registry.ca-labs.com:5000/accumulator:1 registry.ca-labs.com:5000/accumulator:1.1 .
+```
+
+Push the new image to the registry:
+```sh
+docker push registry.ca-labs.com:5000/accumulator:1
+docker push registry.ca-labs.com:5000/accumulator:1.1
+```
+
+Pull the new version of the image onto the production VM:
+```sh
+DOCKER_HOST=production.ca-labs.com:2376 DOCKER_TLS_VERIFY=true docker-compose pull
+```
+
+Update only the app service to deploy the new feature and keep the database up:
+```sh
+DOCKER_HOST=production.ca-labs.com:2376 DOCKER_TLS_VERIFY=true docker-compose \
+    -f docker-compose.yml \
+    -f docker-compose.prod.yml \
+    up \
+    -d \
+    --no-deps \
+    app
 ```
