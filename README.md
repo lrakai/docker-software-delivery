@@ -11,6 +11,11 @@ The MEAN stack application code in `src/` is used to demonstrate how to:
 ## Getting Started
 An Azure Resource Manager template is provided in `infrastructure/` to create an environment with three virtual machines in a virtual network with Docker installed on each. Certificates are shared and setup for TLS secured communication between the three Docker hosts. The created environment resembles the following:
 <img src="https://user-images.githubusercontent.com/3911650/27996794-58870aa8-64a7-11e7-8227-e1f137603dba.png" alt="Azure environment">
+You can also directly visualize the template resources:
+
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Flrakai%2Fdocker-software-delivery%2Fmaster%2Finfrastructure%2Farm-template.json">
+    <img src="https://camo.githubusercontent.com/536ab4f9bc823c2e0ce72fb610aafda57d8c6c12/687474703a2f2f61726d76697a2e696f2f76697375616c697a65627574746f6e2e706e67" data-canonical-src="http://armviz.io/visualizebutton.png" style="max-width:100%;">
+</a> 
 
 A Resource Manager policy to allow only the creation of the required resources is also included in `infrastructure/`.
 
