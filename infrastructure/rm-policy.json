@@ -101,7 +101,8 @@
         "allowedVmSkus": {
             "value": [
                 "Basic_A0",
-                "Basic_A1"
+                "Basic_A1",
+                "Standard_B1ms"
             ]
         },
         "allowedVmExtensionTypes": {
